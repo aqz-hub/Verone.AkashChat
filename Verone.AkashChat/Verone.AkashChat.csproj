@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <PackageId>Vereone.AkashChat</PackageId>
-        <Version>1.0.0</Version>
+        <PackageId>Verone.AkashChat</PackageId>
+        <Version>1.0.1</Version>
         <Authors>Vladimir Zubkov, Vladislav Bondarenko</Authors>
         <Description>This package provides a convenient and efficient way to interact with the Akash Chat neural network. It simplifies communication by offering an easy-to-use API for sending and receiving messages, managing conversations, and leveraging the AI-powered capabilities of Akash Chat within your applications.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
