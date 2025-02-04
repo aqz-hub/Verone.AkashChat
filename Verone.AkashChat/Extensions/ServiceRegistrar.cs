@@ -4,7 +4,7 @@ using Verone.AkashChat.Options;
 
 namespace Verone.AkashChat.Extensions;
 
-public static class ServiceRegistrar
+public static class AkashServiceRegistrar
 {
     public static IServiceCollection AddAkashChat(this IServiceCollection services, Action<AkashChatOptions> options)
     {

@@ -57,7 +57,7 @@ public sealed class AkashChatServiceTests
                 Content = new StringContent(responseJson)
             });
         
-        var result = await _service.SendMessage("Test request message");
+        var result = await _service.SendMessageAsync("Test request message");
         
         result.ShouldBe(expectedMessage);
     }
@@ -82,7 +82,7 @@ public sealed class AkashChatServiceTests
                 Content = new StringContent(responseJson)
             });
         
-        await Should.ThrowAsync<AkashChatException>(() => _service.SendMessage("Test request message"));
+        await Should.ThrowAsync<AkashChatException>(() => _service.SendMessageAsync("Test request message"));
     }
 
     [Fact]
@@ -101,6 +101,6 @@ public sealed class AkashChatServiceTests
                 Content = new StringContent(errorMessage)
             });
 
-        await Should.ThrowAsync<AkashChatException>(() => _service.SendMessage("Test request message"));
+        await Should.ThrowAsync<AkashChatException>(() => _service.SendMessageAsync("Test request message"));
     }
 }

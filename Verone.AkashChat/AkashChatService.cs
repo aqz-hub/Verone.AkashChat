@@ -20,7 +20,7 @@ public sealed class AkashChatService(
     
     private readonly AkashChatOptions _settings = settings.Value;
 
-    public async Task<string> SendMessage(string message)
+    public async Task<string> SendMessageAsync(string message, CancellationToken ct = default)
     {
         var httpClient = httpClientFactory.CreateClient(AkashChatDefaults.HttpClientName);
         
@@ -34,11 +34,11 @@ public sealed class AkashChatService(
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         request.Headers.Add("Authorization", $"Bearer {_settings.Token}");
 
-        var response = await httpClient.SendAsync(request);
+        var response = await httpClient.SendAsync(request, ct);
 
         if (response.IsSuccessStatusCode)
         {
-            var responseContent = await response.Content.ReadAsStringAsync();
+            var responseContent = await response.Content.ReadAsStringAsync(ct);
             var result = JsonSerializer.Deserialize<AkashResponse>(responseContent);
             if (result?.Choices is null || result.Choices.Count == 0)
                 throw new AkashChatException($"Incorrect response from Akash chat: {responseContent}");
@@ -46,7 +46,7 @@ public sealed class AkashChatService(
             return result.Choices.Last(x => x.Message.Role == "assistant").Message.Content;
         }
 
-        var errorContent = await response.Content.ReadAsStringAsync();
+        var errorContent = await response.Content.ReadAsStringAsync(ct);
         throw new AkashChatException($"Error while getting response from chat: {errorContent}");
     }
 

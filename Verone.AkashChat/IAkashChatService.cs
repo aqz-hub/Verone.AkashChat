@@ -8,7 +8,8 @@ public interface IAkashChatService
     /// Send message to the model
     /// </summary>
     /// <param name="message">Message</param>
+    /// <param name="ct">Cancellation token</param>
     /// <returns>Response</returns>
     /// <exception cref="AkashChatException">Throws exception if the response is incorrect</exception>
-    Task<string> SendMessage(string message);
+    Task<string> SendMessageAsync(string message, CancellationToken ct = default);
 }
