@@ -38,3 +38,6 @@ Console.WriteLine(response);
 ## 📝 License  
 
 [MIT](LICENSE).
+
+## 🔗 Links
+[Nuget](https://www.nuget.org/packages/Verone.AkashChat/).
